@@ -2,7 +2,7 @@
 
 return [
     'dashboard' => 'default/index',
-    'Master Data Guru' => 'crud/index?table=guru',
+    'Master Data Guru' => 'crud/index?table=teachers',
     'Master Data Siswa' => 'crud/index?table=data_siswa',
     'Master Data Orang Tua' => 'crud/index?table=data_orangtua',
     'Katagori Soal' => 'crud/index?table=kategori',

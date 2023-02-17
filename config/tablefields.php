@@ -4,8 +4,8 @@ return [
     'tblname'    => [
         'field1','field2'
     ],
-    'guru'  => [
-        'nik','nama','alamat','no_hp','fungsional','struktural'
+    'teachers'  => [
+        'nik','name','address','phone','functional_position','structural_position'
     ],
     'data_siswa'  => [
         'nik','nama','alamat','no_hp',
