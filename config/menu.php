@@ -2,20 +2,22 @@
 
 return [
     'dashboard'             => 'default/index',
-    'Master Data Teachers'  => 'crud/index?table=teachers',
-    'Master Data Students'  => 'crud/index?table=students',
-    'Master Data Parents'   => 'crud/index?table=parents',
-    'Categories'            => 'crud/index?table=categories',
-    'Questions'             => 'crud/index?table=questions',
-    'Evaluation Ranges'     => 'crud/index?table=evaluation_ranges',
-    'Result Ranges'         => 'crud/index?table=result_ranges',
-    'Periods'               => 'crud/index?table=periods',
-    'Evaluation Subjects'   => 'crud/index?table=evaluation_subjects',
-    'Evaluators'            => 'crud/index?table=evaluators',
-    'Evaluator Students'    => 'crud/index?table=evaluator_students',
-    'Evaluator Parents'     => 'crud/index?table=evaluator_parents',
-    'Question Assigns'      => 'crud/index?table=question_assigns',
-    'Evaluations'           => 'crud/index?table=evaluations',
+    'Master Data' => [
+        'Data Guru'         => 'crud/index?table=teachers',
+        'Data Siswa'        => 'crud/index?table=students',
+        'Data Orang Tua'    => 'crud/index?table=parents',
+        'Kategori Soal'     => 'crud/index?table=categories',
+        'Bank Soal'         => 'crud/index?table=questions',
+        'Range Penilaian'   => 'crud/index?table=evaluation_ranges',
+        'Range Hasil'       => 'crud/index?table=result_ranges',
+        'Periode Penilaian' => 'crud/index?table=periods'
+    ],
+    'Subjek Penilaian'   => 'evaluation_subjects/index',
+    'Penilai'            => 'evaluators/index',
+    'Penilai Siswa'    => 'evaluator_students/index',
+    'Penilai Orang Tua'     => 'evaluator_parents/index',
+    'Assign Soal'      => 'crud/index?table=question_assigns',
+    'Proses Penilaian'           => 'crud/index?table=evaluations',
     'pengguna'  => [
         'semua pengguna' => 'users/index',
         'roles' => 'roles/index'

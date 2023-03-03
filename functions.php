@@ -155,7 +155,7 @@ function generated_menu($user_id)
             $dropdown = '<li class="nav-item '.($active?'active submenu':'').'">
                             <a data-toggle="collapse" href="#'.$key.'" aria-expanded="'.($active?'true':'').'">
                                 <i class="'.$icon[$key].'"></i>
-                                <p>'.ucwords($key).'</p>
+                                <p>'.ucwords(__($key)).'</p>
                                 <span class="caret"></span>
                             </a>
                             <div class="collapse '.($active?'show':'').'" id="'.$key.'">

@@ -8,14 +8,24 @@ if(request() == 'POST')
     $conn  = conn();
     $db    = new Database($conn);
 
+    
+
     $user = $db->single('users',[
         'username' => $_POST['username'],
         'password' => md5($_POST['password']),
     ]);
+    $db->query = ("SELECT * 
+                FROM periods 
+                WHERE status = 1
+                ");
+    $period = $db->exec("single");
+
 
     if($user)
     {
+        Session::set(['aktifperiods' => $period->id]);
         Session::set(['user_id'=>$user->id]);
+
         header('location:'.routeTo(config('after_login_page')));
         die();
     }

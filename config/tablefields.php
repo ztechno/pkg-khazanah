@@ -104,8 +104,8 @@ return [
         'name',
         'year' => [
             'label' => 'Year',
-            'type'  => 'date'
-        ],
+            'type'  => 'date',
+        ]
     ],
     'evaluation_subjects' => [
         'teacher_id' => [
@@ -130,6 +130,10 @@ return [
             'label' => 'Period',
             'type'  => 'options-obj:periods,id,name'
         ],
+        'type' => [
+            'label' => 'Type',
+            'type'  => 'options:Penilai|Teman Sejawat'
+        ]
     ],
     'evaluator_students' => [
         'student_id' => [
@@ -174,9 +178,9 @@ return [
         ],
         'question_id' => [
             'label' => 'Question',
-            'type'  => 'options-obj:questions,id,categorie_id'
+            'type'  => 'options-obj:questions,id,description'
         ],
-        'categories' => [
+        'categorie_id' => [
             'label' => 'Categories',
             'type'  => 'options-obj:categories,id,name'
         ],

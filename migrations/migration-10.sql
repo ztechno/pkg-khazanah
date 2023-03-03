@@ -1,5 +1,0 @@
-CREATE TABLE periods (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(30) NOT NULL,
-    year INT NOT NULL
-);
