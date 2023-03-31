@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title><?=get_title()?></title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-    <link rel="icon" href="<?=asset('assets/img/main-logo.png')?>" type="image/x-icon" />
+    <link rel="icon" href="<?=asset('assets/img/logokhazanah1.jpeg')?>" type="image/x-icon" />
     <!--CDN - DatePicker-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet"
         type="text/css" />
