@@ -23,23 +23,10 @@
                         <div class="alert alert-danger"><?=$error_msg?></div>
                         <?php endif ?>
                         <form action="" method="post" enctype="multipart/form-data">
-                            <?php 
 
-                                $conn = conn();
-                                $db   = new Database($conn);
-
-                                $db->query = ("SELECT * 
-                                                    FROM questions 
-                                                    
-                                                    ");
-
-                                $dataquestions = $db->exec("all");
-
-                                
-                                ?>
                             <div class="form-group">
                                 <label for="" class>Target</label>
-                                <select name='target' class='form-control' placeholder='Target'>
+                                <select name='target' id='target' class='form-control' placeholder='Target'>
                                     <option value=''>- Pilih -</option>
                                     <option value='Penilai'>Penilai</option>
                                     <option value='Teman Sejawat'>Teman Sejawat</option>
@@ -47,30 +34,12 @@
                                     <option value='Orang Tua'>Orang Tua</option>
                                 </select>
                             </div>
+
+
+
+                            <div class="datasoal"></div>
+
                     </div>
-
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th width="10px"> <input type="checkbox" onchange="checkAll(this)" alt="Checkbox"
-                                        value="Pilih Semua" data-checkbox-all="dataguru">
-                                </th width="10px">
-                                <th> Pilih Semua</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($dataquestions as $key => $dq) { ?>
-                            <tr>
-                                <td><input type="checkbox" name="question_id[<?=$key?>]" alt="Checkbox"
-                                        value="<?=$dq->id."-".$dq->categorie_id?>"></td>
-                                <td><?=$dq->description?></td>
-                            </tr>
-                            <?php } ?>
-
-                        </tbody>
-                    </table>
-
 
 
                     <div class="form-group">
@@ -86,6 +55,30 @@
 <?php load_templates('layouts/bottom') ?>
 
 <script>
+$('#target').change(function() {
+    return load_data()
+})
+
+load_data();
+
+function load_data(target) {
+    $.ajax({
+        method: "POST",
+        url: "<?=routeTo('evaluation_subjects/datasoal')?>",
+        data: {
+            target: $('#target').val()
+        },
+        success: function(hasil) {
+            $('.datasoal').html(hasil);
+        }
+    });
+}
+$('#target').change(function() {
+    var target = $("#target").val();
+    load_data(target);
+
+});
+
 $("#tahun").datepicker({
     format: 'yyyy',
     viewMode: "years",

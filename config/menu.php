@@ -16,7 +16,7 @@ return [
     'Penilai'            => 'evaluators/index',
     'Penilai Siswa'    => 'evaluator_students/index',
     'Penilai Orang Tua'     => 'evaluator_parents/index',
-    'Assign Soal'      => 'crud/index?table=question_assigns',
+    'Assign Soal'      => 'question_assigns/index',
     'Proses Penilaian'           => 'crud/index?table=evaluations',
     'pengguna'  => [
         'semua pengguna' => 'users/index',

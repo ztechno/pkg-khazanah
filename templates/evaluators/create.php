@@ -56,8 +56,8 @@
                                 <label for="" class>Type</label>
                                 <select name='type' class='form-control' placeholder='Type'>
                                     <option value=''>- Pilih -</option>
-                                    <option value='1'>Penilai</option>
-                                    <option value='2'>Teman Sejawat</option>
+                                    <option value='Penilai'>Penilai</option>
+                                    <option value='Teman Sejawat'>Teman Sejawat</option>
 
                                 </select>
                             </div>

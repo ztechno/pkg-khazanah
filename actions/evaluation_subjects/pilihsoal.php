@@ -30,25 +30,27 @@ if(request() == 'POST')
                     WHERE id = $id
                     ");
     $evaluation_sub = $db->exec("single");
-    
-    
+    // echo '<pre>';
+    // print_r($_POST);  
+    // die;  
     foreach($_POST['question_id'] as $key => $question_id){
         $question_id    = explode("-", $question_id);
         $db->insert($table, [
-                'question_id'    => $question_id[0],
-                'categorie_id'   => $question_id[1],
-                'teacher_id'     => $evaluation_sub->teacher_id,
-                'period_id'      => $priod->id,
-                'target'         => $_POST['target']
-        ]);
-    }
+            'question_id'    => $question_id[0],
+            'categorie_id'   => $question_id[1],
+            'teacher_id'     => $evaluation_sub->teacher_id,
+            'period_id'      => $priod->id,
+            'target'         => $_POST['target']
+            ]);
+        }
+        
     // $insert = $db->insert($table,$_POST[$table]);
 
     if(file_exists('../actions/'.$table.'/after-insert.php'))
         require '../actions/'.$table.'/after-insert.php';
 
     set_flash_msg(['success'=>_ucwords(__($table)).' berhasil ditambahkan']);
-    header('location:'.routeTo('crud/index',['table'=>$table]));
+    header('location:'.routeTo('question_assigns/index'));
 }
 
 

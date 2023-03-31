@@ -25,7 +25,8 @@ if(request() == 'POST')
     $priod = $db->exec("single");
 
     // echo '<pre>';
-    // print_r($_POST);    
+    // print_r($_POST);  
+    // die;  
     foreach($_POST['subject_id'] as $key => $subject_id){
        
         $db->insert($table, [
