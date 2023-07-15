@@ -61,14 +61,34 @@ class Form
                 $obj_array = explode(',',$options);
                 $options = $obj_array[0];
 
+                $last_params = array_slice($obj_array, 2);
+                $last_params = implode(',',$last_params);
+
+                $clause = explode('|',$last_params);
+                $_clause = [];
+                if(isset($clause[1]))
+                {
+                    $last_params = $clause[0];
+                    $clause = explode(',',$clause[1]);
+
+                    foreach($clause as $k => $c)
+                    {
+                        $n = $k+1;
+                        if($n%2==0) continue;
+                        $_clause[$c] = $clause[$n];
+                    }
+                }
+
                 $conn = conn();
                 $db   = new Database($conn);
-                $datas = $db->all($options);
+                $clause = count($_clause) ? 'WHERE ' . $db->build_clause($_clause) : '';
+                $db->query = "SELECT $obj_array[1] as id, $last_params as value FROM $options $clause";
+                $datas = $db->exec('all');
                 $options = $datas;
                 $lists .= "<option value=''>- Pilih -</option>";
                 foreach($options as $option)
                 {
-                    $lists .= "<option value='".$option->{$obj_array[1]}."' ".($option->{$obj_array[1]}==$value?'selected=""':'').">".$option->{$obj_array[2]}."</option>";
+                    $lists .= "<option value='".$option->id."' ".($option->id==$value?'selected=""':'').">".$option->value."</option>";
                 }
             }
             else
@@ -122,13 +142,50 @@ class Form
                 $obj_array = explode(',',$options);
                 $options = $obj_array[0];
 
+                $last_params = array_slice($obj_array, 2);
+                $last_params = implode(',',$last_params);
+
+                $clause = explode('|',$last_params);
+                $_clause = [$obj_array[1] => $index];
+                if(isset($clause[1]))
+                {
+                    $last_params = $clause[0];
+                    $clause = explode(',',$clause[1]);
+
+                    foreach($clause as $k => $c)
+                    {
+                        $n = $k+1;
+                        if($n%2==0) continue;
+                        $_clause[$c] = $clause[$n];
+                    }
+                }
+
                 $conn = conn();
                 $db   = new Database($conn);
-                $data = $db->single($options,[
-                    $obj_array[1] => $index
-                ]);
-                return $data->{$obj_array[2]};
+                $clause = count($_clause) ? 'WHERE ' . $db->build_clause($_clause) : '';
+                $db->query = "SELECT $obj_array[1] as id, $last_params as value FROM $options $clause";
+                $data = $db->exec('single');
+                return $data->value;
+                // $options = $datas;
+                // $lists .= "<option value=''>- Pilih -</option>";
+                // foreach($options as $option)
+                // {
+                //     $lists .= "<option value='".$option->id."' ".($option->id==$value?'selected=""':'').">".$option->value."</option>";
+                // }
             }
+
+            // if(substr($type, 8,3) == 'obj')
+            // {
+            //     $obj_array = explode(',',$options);
+            //     $options = $obj_array[0];
+
+            //     $conn = conn();
+            //     $db   = new Database($conn);
+            //     $data = $db->single($options,[
+            //         $obj_array[1] => $index
+            //     ]);
+            //     return $data->{$obj_array[2]};
+            // }
         }
 
         if(substr($type,0,8) == 'checkbox')

@@ -9,12 +9,14 @@ return [
     'parents'           => 'Orang Tua',
     'categories'        => 'Kategori Soal',
     'evaluation ranges' => 'Range Penilaian',
-    'resultranges'      => 'Hasil',
+    'evaluation_ranges' => 'Range Penilaian',
+    'result_ranges'     => 'Hasil Penilaian',
     'periods'           => 'Periode Penilaian',
     'evaluation'        => 'Evaluasi',
     'evaluators'        => 'Penilai',
     'evaluator'         => 'Penilai',
-    'evaluations'       => 'Proses Penilaian'
+    'evaluations'       => 'Proses Penilaian',
+    'evaluation_subjects' => 'Subjek Penilaian'
 
     
 ];

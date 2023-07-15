@@ -42,7 +42,7 @@
                                 ?>
 
                             <div class="form-group">
-                                <label for="" class>Guru</label>
+                                <label for="" class>Guru Penilai</label>
                                 <select name='teacher_id' class='form-control' placeholder='Target'>
                                     <option value=''>- Pilih -</option>
                                     <?php foreach ($dataguru as $key => $ds) {?>
@@ -56,13 +56,13 @@
                                 <label for="" class>Type</label>
                                 <select name='type' class='form-control' placeholder='Type'>
                                     <option value=''>- Pilih -</option>
-                                    <option value='Penilai'>Penilai</option>
-                                    <option value='Teman Sejawat'>Teman Sejawat</option>
+                                    <option value='1'>Penilai</option>
+                                    <option value='2'>Teman Sejawat</option>
 
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="" class>Subject</label>
+                                <label for="" class>Subject Penilaian</label>
                             </div>
                             <table class="table">
                                 <thead>
@@ -79,7 +79,7 @@
 
                                     <?php foreach ($datasubjects as $dsub) { ?>
                                     <?php foreach ($dataguru as $dg) {
-                                        $namaguru[] = $dg->name;
+                                        $namaguru[$dg->id] = $dg->name;
                                     } 
                                     ?>
                                     <tr>

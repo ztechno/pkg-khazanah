@@ -37,6 +37,7 @@ CREATE TABLE periods (
 );
 CREATE TABLE categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    parent_id INT DEFAULT NULL,
     name VARCHAR(100) NOT NULL,
     target VARCHAR(100) NOT NULL
 );
@@ -49,14 +50,14 @@ CREATE TABLE questions (
 CREATE TABLE evaluation_ranges (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
-    min_value DOUBLE(11,3) NOT NULL,
-    max_value DOUBLE(11,3) NOT NULL
+    min_value INT NOT NULL,
+    max_value INT NOT NULL
 );
 CREATE TABLE result_ranges (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
-    min_value DOUBLE(11,3) NOT NULL,
-    max_value DOUBLE(11,3) NOT NULL
+    min_value INT NOT NULL,
+    max_value INT NOT NULL
 );
 CREATE TABLE evaluation_subjects (
     id INT AUTO_INCREMENT PRIMARY KEY,

@@ -30,8 +30,8 @@
                                     <option value=''>- Pilih -</option>
                                     <option value='Penilai'>Penilai</option>
                                     <option value='Teman Sejawat'>Teman Sejawat</option>
-                                    <option value='Siswa'>Siswa</option>
                                     <option value='Orang Tua'>Orang Tua</option>
+                                    <option value='Siswa'>Siswa</option>
                                 </select>
                             </div>
 

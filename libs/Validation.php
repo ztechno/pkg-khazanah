@@ -66,7 +66,7 @@ class Validation
             $options = $in[1];
             $options = explode(",", $options);
 
-            if(!in_array($data[$key]))
+            if(!in_array($data[$key], $options))
             {
                 return ['status' => false, 'message' => __($key) . ' field must be in '. $in[1]];
             }
@@ -103,6 +103,17 @@ class Validation
 
             unset($clause[0]); // remove item at index 0
             $clause = array_values($clause); // 'reindex' array
+
+            if(empty($clause))
+            {
+                $clause[] = 'id';
+                $clause[] = $data[$key];
+            }
+
+            if(count($clause) == 1)
+            {
+                $clause[] = $data[$key];
+            }
 
             $_clause = [];
             foreach($clause as $k => $c)
