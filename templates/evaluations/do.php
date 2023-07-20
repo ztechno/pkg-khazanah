@@ -13,12 +13,16 @@
                 </div>
             </div>
         </div>
+        
         <div class="page-inner mt--5">
             <?php if($evaluator->type == 1): ?>
                 <?php require 'penilai.php' ?>
             <?php else: ?>
                 <?php require 'teman-sejawat.php' ?>
             <?php endif ?>
+            
+       
+
         </div>
     </div>
 <?php load_templates('layouts/bottom') ?>

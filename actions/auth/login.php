@@ -14,17 +14,19 @@ if(request() == 'POST')
         'username' => $_POST['username'],
         'password' => md5($_POST['password']),
     ]);
-    $db->query = ("SELECT * 
-                FROM periods 
-                WHERE status = 1
-                ");
-    $period = $db->exec("single");
-
+    // Periode
+    $db->query  = ("SELECT * FROM periods WHERE status = 1");
+    $period     = $db->exec("single");
+    
+    // Role-id
+    $db->query  = ("SELECT * FROM user_roles WHERE user_id = $user->id");
+    $role    = $db->exec("single");
 
     if($user)
     {
         Session::set(['aktifperiods' => $period->id]);
         Session::set(['user_id'=>$user->id]);
+        Session::set(['role_id'=>$role->role_id]);
 
         header('location:'.routeTo(config('after_login_page')));
         die();

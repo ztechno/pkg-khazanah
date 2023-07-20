@@ -5,6 +5,9 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12 mb-4">
+                <?php if($success_msg): ?>
+                <div class="alert alert-success"><?=$success_msg?></div>
+                <?php endif ?>
                 <ul class="nav nav-pills nav-secondary" id="pills-tab" role="tablist">
                     <?php foreach($categories as $key => $category): ?>
                     <li class="nav-item submenu">
@@ -18,6 +21,10 @@
                     <?php foreach($categories as $key => $category): ?>
                     <div class="tab-pane fade <?=$key==0?'show active':''?>" id="pills-<?=$category->id?>" role="tabpanel" aria-labelledby="pills-<?=$category->id?>">
                         <form action="" method="post">
+                        <input type="hidden" name="target" value="<?=$evaluator->type?>">
+                        <input type="hidden" name="evaluator_id" value="<?=$evaluator->id?>">
+                        <input type="hidden" name="teacher_id" value="<?=$evaluator->teacher->id?>">
+                        <input type="hidden" name="period_id" value="<?=$period->id?>">
                         <?php foreach($category->childs as $index => $child): ?>
                         <h4>KOMPETENSI <?=$index+1?>. <?=$child->name?></h4>
 
@@ -34,7 +41,7 @@
                                     <p><?=$question->description?></p>
                                 </td>
                                 <td>
-                                    <input type="number" name="" id="" class="form-control">
+                                    <input type="number" name="score[<?=$question->id?>]" id="" class="form-control">
                                 </td>
                             </tr>
                             <?php endforeach ?>

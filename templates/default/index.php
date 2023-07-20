@@ -16,10 +16,11 @@
     </div>
     <div class="page-inner mt--5">
         <div class="row mt--2">
-
+            
             <div class="col-md-3">
                 <div class="card full-height">
                     <div class="card-body">
+                        
                         <div class="card-title">Data Guru</div>
                         <div class="row py-3">
                             <div class="col-md-4 d-flex flex-column justify-content-around">
@@ -85,6 +86,7 @@
                     </div>
                 </div>
             </div>
+            <!-- <h1><?php echo '<pre>' . PHP_EOL; var_dump(auth()->role_id)?></h1> -->
            
         </div>
 

@@ -72,7 +72,7 @@ return [
         ],
         'target' => [
             'label' => 'Target Soal',
-            'type'  => 'options:Atasan|Penilai 1 dan 2|Teman Sejawat|Siswa|Orang Tua'
+            'type'  => 'options:Atasan|Penilai|Teman Sejawat|Siswa|Orang Tua'
         ],
     ],
     'questions'  => [
