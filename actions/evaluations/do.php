@@ -34,13 +34,26 @@ $evaluator_students = $db->single('evaluator_students', [
     'id'    => $_GET['id']
 ]);
 
-// $db->query = "SELECT * FROM students WHERE id = (SELECT teacher_id FROM evaluation_subjects WHERE id=$evaluator_students->subject_id)";
-// $evaluator_students->student = $db->exec('single');
+$db->query = "SELECT * FROM students WHERE id = (SELECT teacher_id FROM evaluation_subjects WHERE id=$evaluator_students->subject_id)";
+$evaluator_students->student = $db->exec('single');
 
-// $categories_student = $db->all('categories',[
-//     'parent_id' => ['IS', 'NULL'],
-//     'target' => 'Siswa'
-// ]);
+$categories_student = $db->all('categories',[
+    'parent_id' => ['IS', 'NULL'],
+    'target' => 'Siswa'
+]);
+
+// ========================================= Orang Tua ===========================================
+$evaluator_parents = $db->single('evaluator_parents', [
+    'id'    => $_GET['id']
+]);
+
+$db->query = "SELECT * FROM parents WHERE id = (SELECT teacher_id FROM evaluation_subjects WHERE id=$evaluator_parents->subject_id)";
+$evaluator_parents->parent = $db->exec('single');
+
+$categories_parent = $db->all('categories',[
+    'parent_id' => ['IS', 'NULL'],
+    'target' => 'Orang Tua'
+]);
 
 $categories = array_map(function($category) use ($db){
     $childs = $db->all('categories',[
@@ -63,34 +76,60 @@ $categories = array_map(function($category) use ($db){
     return $category;
 }, $categories);
 
-// $categories_student = array_map(function($category) use ($db){
-//     $childs = $db->all('categories',[
-//         'parent_id' => $category->id
-//     ]);
+$categories_student = array_map(function($category) use ($db){
+    $childs = $db->all('categories',[
+        'parent_id' => $category->id
+    ]);
 
-//     if($childs)
-//     {
-//         $childs = array_map(function($child) use ($db){
-//             $child->questions = $db->all('questions', ['categorie_id' => $child->id]);
+    if($childs)
+    {
+        $childs = array_map(function($child) use ($db){
+            $child->questions = $db->all('questions', ['categorie_id' => $child->id]);
+            return $child;
+        }, $childs);
     
-//             return $child;
-//         }, $childs);
+        $category->childs = $childs;
+    }
+
+    $category->questions = $db->all('questions', ['categorie_id' => $category->id]);
+
+    return $category;
+}, $categories_student);
+
+$categories_parent = array_map(function($category) use ($db){
+    $childs = $db->all('categories',[
+        'parent_id' => $category->id
+    ]);
+
+    if($childs)
+    {
+        $childs = array_map(function($child) use ($db){
+            $child->questions = $db->all('questions', ['categorie_id' => $child->id]);
+            return $child;
+        }, $childs);
     
-//         $category->childs = $childs;
-//     }
+        $category->childs = $childs;
+    }
 
-//     $category->questions = $db->all('questions', ['categorie_id' => $category->id]);
+    $category->questions = $db->all('questions', ['categorie_id' => $category->id]);
 
-//     return $category;
-// }, $categories_student);
+    return $category;
+}, $categories_parent);
 
 if(request() == 'POST')
 {
+    if($_POST['target'] == 1){
+        $target = 'Penilai';
+    }elseif($_POST['target'] == 2){
+        $target = 'Teman Sejawat';
+    }else{
+        $target = $_POST['target'];
+    }
+    $scoreArray     = $_POST['score'];
+
     // echo '<pre>';
     // print_r($_POST);
     // die;
-    $target         = $_POST['target'] == 1 ? 'Penilai' : 'Teman Sejawat';
-    $scoreArray     = $_POST['score'];
 
     foreach ($scoreArray as $questionId => $score) {
         $db->insert('evaluations', [
@@ -103,8 +142,13 @@ if(request() == 'POST')
         ]);
     }
    
-    set_flash_msg(['success'=> 'Penilaian Kinerja Guru berhasil ditambahkan']);
+    set_flash_msg(['success'=> 'Penilaian berhasil ditambahkan']);
     header('location:'.routeTo('evaluations/do?id='.$_GET['id'].''));
 }
 
-return compact('evaluator', 'categories', 'categories_student', 'period', 'success_msg');
+
+// echo "<pre>";
+// print_r($categories_student);
+// die();
+
+return compact('evaluator','evaluator_students','evaluator_parents', 'categories', 'categories_student', 'categories_parent', 'period', 'success_msg');

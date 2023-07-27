@@ -158,7 +158,7 @@ return [
         ],
         'subject_id' => [
             'label' => 'Subjek Penilaian',
-            'type'  => 'options-obj:evaluation_subjects,id,teacher_id'
+            'type'  => 'options-obj:evaluation_subjects,id,(SELECT name FROM teachers WHERE teachers.id=evaluation_subjects.teacher_id)'
         ],
         'period_id' => [
             'label' => 'Periode',
@@ -172,7 +172,7 @@ return [
         ],
         'subject_id' => [
             'label' => 'Subjek Penilaian',
-            'type'  => 'options-obj:evaluation_subjects,id,teacher_id'
+            'type'  => 'options-obj:evaluation_subjects,id,(SELECT name FROM teachers WHERE teachers.id=evaluation_subjects.teacher_id)'
         ],
         'period_id' => [
             'label' => 'Periode',

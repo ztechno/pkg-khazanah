@@ -6,14 +6,14 @@
     <style>
         @page {
             size: F4;
-            margin: 0;
+            margin: 0.7cm;
         }
 
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             font-size: 10pt;
-            padding: 50px;
+            padding: 20px;
             /* Tambahkan padding agar konten tidak tepat di pinggir kertas */
         }
 
@@ -33,6 +33,7 @@
         .table th {
             border: 1px solid black;
             padding: 8px;
+            /* text-align: center; */
         }
 
         .table th {
@@ -100,69 +101,116 @@
 
     <!-- Tambahkan konten halaman sesuai dengan struktur yang diberikan -->
     <div style="margin-bottom:10px;margin-top:20px">
-        Nama Ketua Yayasan : ...........................<br>
-        Nama Kepala Sekolah : .............................<br>
-        Nama Guru Yang Dinilai : ..........................<br>
-        Jabatan Fungsional/Struktural : ......................../................<br>
-        Nama Pengawas/ Verifikator : ...............................<br>
-        Semester : .......................................<br>
-        Rentang waktu penilaian : ......................... - ......................<br>
-        Tanggal Verifikasi : ..........., ..............,...............<br>
-        Tanggal Pengesahan : ..........., ..............,...............<br>
+    <table>
+        <tr>
+            <td width="200">Nama Ketua Yayasan</td>
+            <td width="10">:</td>
+            <td>...........................</td>
+        </tr>
+        <tr>
+            <td>Nama Kepala Sekolah</td>
+            <td>:</td>
+            <td>...........................</td>
+        </tr>
+        <tr>
+            <td>Nama Guru Yang Dinilai</td>
+            <td>:</td>
+            <td><?=$evaluator->teacher->name?></td>
+        </tr>
+        <tr>
+            <td>Jabatan Fungsional/Struktural</td>
+            <td>:</td>
+            <td>...........................</td>
+        </tr>
+        <tr>
+            <td>Nama Pengawas/ Verifikator</td>
+            <td>:</td>
+            <td>...........................</td>
+        </tr>
+        <tr>
+            <td>Semester</td>
+            <td>:</td>
+            <td>...........................</td>
+        </tr>
+        <tr>
+            <td>Rentang waktu penilaian</td>
+            <td>:</td>
+            <td>...........................</td>
+        </tr>
+        <tr>
+            <td>Tanggal Verifikasi</td>
+            <td>:</td>
+            <td>...........................</td>
+        </tr>
+        <tr>
+            <td>Tanggal Pengesahan</td>
+            <td>:</td>
+            <td>...........................</td>
+        </tr>
+    </table>
+       
     </div>
 
+    <?php
+    $no = 1;
+    $huruf = range('A', 'Z');
+    ?>
+    <table class="table" style="width:100%">
+        <tr>
+            <th>No</th>
+            <th>Kompetensi/Sub Kompetensi</th>
+            <th>Nilai PKG</th>
+            <th>Keterangan</th>
+        </tr>
+        
         <?php
-        $no = 1;
-        $huruf = range('A', 'Z');
-        echo '<pre>';
-        print_r($hasil_score);
-        ?>
-    <table class="table">
-    <tr>
-        <th>No</th>
-        <th>Kompetensi</th>
-        <th>Sub Kompetensi</th>
-        <th>Nilai PKG</th>
-        <th>Keterangan</th>
-    </tr>
-
-    <?php
         foreach ($categories as $key => $category) {
-           foreach ($category->childs as $c => $child) {
-    ?>
-                    <tr>
-                        <td><?= $no++?></td>
-                        <td><?= $category->name?></td>
-                        <td><?= $child->name; ?></td>
-                        <td>Data kosong</td>
-                        <td>Data kosong</td>
-                    </tr>
-    <?php
-           }   
-        }
-    ?>
-</table>
+            ?>
+            <tr>
+                <td style="text-align: center;"><?= $huruf[$key] ?></td>
+                <td colspan="3"><b><?= $category->name ?></b></td>
+            </tr>
+            <?php 
+            $total = 0; 
+            $iterator = count($category->questions) ? $category->questions : $category->childs;
+            foreach ($iterator as $c => $child) : 
+                $total += $dump_scores[$child->id];
+            ?>
+            <tr>
+                <td style="text-align: center;"><?= $no++ ?></td>
+                <td><?= $child->name??$child->description ?></td>
+                <td style="text-align: center;"><?= number_format($dump_scores[$child->id]) ?></td>
+                <td>
+                  
+                    
+                </td>
+            </tr>
+            <?php endforeach ?>
+            <tr>
+                <td></td>
+                <td>TOTAL</td>
+                <td style="text-align: center;"><?=number_format($total)?></td>
+                <td></td>
+            </tr>
+        <?php } ?>
+    </table>
+
 
 
 
     <div class="signature2">
         Sidoarjo, 15 Desember 2023
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+  
     <div class="signature">
 
         <table style="width:100%">
             <tr>
-                <th rowspan="3">Guru yang Dinilai<br><br><br><br><br><br>
-                    <u>......................</u><br>
-                    NIK : ............
+                <th width="50%" rowspan="3">Guru yang Dinilai<br><br><br><br><br><br>
+                    <u><?=$evaluator->teacher->name?></u><br>
+                    NIK : <?=$evaluator->teacher->nik?>
                 </th>
-                <th rowspan="3">Kepala SD Khazanah Ilmu<br><br><br><br><br><br>
+                <th width="50%" rowspan="3">Kepala SD Khazanah Ilmu<br><br><br><br><br><br>
                     <u>Mohamad Rojii, M.Pd.</u><br>
                     NIK : 2015.037
                 </th>
@@ -171,7 +219,7 @@
 
         <table style="width:100%;margin-top:20px">
             <tr>
-                <th rowspan="3">Pengawas/Verifikator<br><br><br><br><br><br>
+                <th width="100%" rowspan="3">Pengawas/Verifikator<br><br><br><br><br><br>
                     <u>......................</u><br>
                     NIK : ............
                 </th>

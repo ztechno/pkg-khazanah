@@ -8,7 +8,9 @@ return [
     'Penilai Siswa'    => 'fas fa-book-reader',
     'Penilai Orang Tua'     => 'fas fa-book-reader',
     'Assign Soal'      => 'fas fa-book',
-    'Proses Penilaian'           => 'fas fa-server',
+    'Proses Penilaian Guru'           => 'fas fa-server',
+    'Proses Penilaian Siswa' => 'fas fa-server',
+    'Proses Penilaian Orang Tua' => 'fas fa-server',
     'pengguna'  => 'fas fa-users',
     'pengaturan' => 'fas fa-cog'
 
