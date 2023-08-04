@@ -10,9 +10,9 @@
                 <div class="ml-md-auto py-2 py-md-0">
                     <?php if (auth()->role_id == 2) : ?>
                         <?php if ($evaluator->type == 1) : ?>
-                            <a href="<?= routeTo('evaluations/index') ?>" class="btn btn-warning btn-round">Kembali</a>
+                            <a href="<?= routeTo('evaluations/teacher') ?>" class="btn btn-warning btn-round">Kembali</a>
                         <?php elseif ($evaluator->type == 2) : ?>
-                            <a href="<?= routeTo('evaluations/index') ?>" class="btn btn-warning btn-round">Kembali</a>
+                            <a href="<?= routeTo('evaluations/teacher') ?>" class="btn btn-warning btn-round">Kembali</a>
                         <?php endif ?>
                     <?php elseif (auth()->role_id == 4) : ?>
                         <a href="<?= routeTo('evaluations/student') ?>" class="btn btn-warning btn-round">Kembali</a>

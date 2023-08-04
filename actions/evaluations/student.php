@@ -104,7 +104,7 @@ if(isset($_GET['draw']))
             $results[$key][] = $data_value;
         }
         
-        $results[$key][] = require '../actions/evaluations/action-button.php';
+        $results[$key][] = require '../actions/evaluations/action-button-student.php';
     }
 
     echo json_encode([

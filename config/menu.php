@@ -17,7 +17,7 @@ return [
     'Penilai Siswa'      => 'evaluator_students/index',
     'Penilai Orang Tua'     => 'evaluator_parents/index',
     // 'Assign Soal'      => 'question_assigns/index',
-    'Proses Penilaian Guru'    => 'evaluations/index',
+    'Proses Penilaian Guru'    => 'evaluations/teacher',
     'Proses Penilaian Siswa'    => 'evaluations/student',
     'Proses Penilaian Orang Tua'    => 'evaluations/parent',
     'pengguna'  => [
