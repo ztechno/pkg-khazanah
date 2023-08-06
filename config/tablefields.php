@@ -132,6 +132,10 @@ return [
             'label' => 'Periode',
             'type'  => 'options-obj:periods,id,name'
         ],
+        'kehadiran' => [
+            'label' => 'Rata-rata Kehadiran',
+            'type'  => 'text'
+        ]
     ],
     'evaluators' => [
         'teacher_id' => [

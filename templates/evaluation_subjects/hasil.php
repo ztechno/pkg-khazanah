@@ -115,7 +115,7 @@
             <tr>
                 <td>Nama Guru Yang Dinilai</td>
                 <td>:</td>
-                <td><?= $evaluator->teacher->name ?></td>
+                <td><?= $data->name ?></td>
             </tr>
             <tr>
                 <td>Jabatan Fungsional/Struktural</td>
@@ -165,32 +165,128 @@
         <tr>
             <td style="text-align: center;">1</td>
             <td>Penilaian Oleh Atasan</td>
-            <td style="text-align: center;"><?=$dataPenilai[0]->NILAI?></td>
-            <td></td>
+            <td style="text-align: center;"><?=number_format($dataPenilai[0]->NILAI, 2)?></td>
+
+            <?php
+            
+            $conn = conn();
+            $db   = new Database($conn);
+
+            $db->query = "SELECT * FROM evaluation_ranges
+                            WHERE min_value <= ".$dataPenilai[0]->NILAI."
+                            AND max_value >= ".$dataPenilai[0]->NILAI
+            ;
+
+            $ratarata = $db->exec("single");
+            
+            ?>
+            <td><?=$ratarata->name?></td>
         </tr>
+
         <tr >
             <td style="text-align: center;">2</td>
             <td>Penilaian Oleh Teman Sejawat</td>
-            <td style="text-align: center;"><?=$dataTeman[0]->NILAI?></td>
-            <td></td>
+            <td style="text-align: center;"><?=number_format($dataTeman[0]->NILAI, 2)?></td>
+            <?php
+            
+            $conn = conn();
+            $db   = new Database($conn);
+
+            $db->query = "SELECT * FROM evaluation_ranges
+                            WHERE min_value <= ".(isset($dataTeman[0]->NILAI) ? $dataTeman[0]->NILAI : 0)."
+                            AND max_value >= ".(isset($dataTeman[0]->NILAI) ? $dataTeman[0]->NILAI : 0)
+            ;
+
+            $ratarata = $db->exec("single");
+            
+            ?>
+            <td><?=$ratarata->name?></td>
+          
         </tr>
         <tr>
             <td style="text-align: center;">3</td>
             <td>Penilaian Oleh Peserta Didik</td>
-            <td style="text-align: center;"><?=$dataSiswa[0]->NILAI?></td>
-            <td></td>
+            <td style="text-align: center;"><?=number_format($dataSiswa[0]->NILAI, 2)?></td>
+            <?php
+            
+            $conn = conn();
+            $db   = new Database($conn);
+
+            $db->query = "SELECT * FROM evaluation_ranges
+                            WHERE min_value <= ".$dataSiswa[0]->NILAI."
+                            AND max_value >= ".$dataSiswa[0]->NILAI
+            ;
+
+            $ratarata = $db->exec("single");
+            
+            ?>
+            <td><?=$ratarata->name?></td>
+            
         </tr>
         <tr>
             <td style="text-align: center;">4</td>
+            <td>Penilaian Oleh Orang tua</td>
+            <td style="text-align: center;"><?=number_format($dataOrangtua[0]->NILAI, 2)?></td>
+            <?php
+            
+            $conn = conn();
+            $db   = new Database($conn);
+
+            $db->query = "SELECT * FROM evaluation_ranges
+                            WHERE min_value <= ".$dataOrangtua[0]->NILAI."
+                            AND max_value >= ".$dataOrangtua[0]->NILAI
+            ;
+
+            $ratarata = $db->exec("single");
+            
+            ?>
+            <td><?=$ratarata->name?></td>
+        </tr>
+
+
+        <tr>
+            <td style="text-align: center;">5</td>
             <td>Rata-Rata Kehadiran</td>
-            <td style="text-align: center;">0</td>
-            <td></td>
+            <td style="text-align: center;"><?=number_format($data->kehadiran, 2);?></td>
+            <?php
+            
+            $conn = conn();
+            $db   = new Database($conn);
+
+            $db->query = "SELECT * FROM evaluation_ranges
+                            WHERE min_value <= ".$data->kehadiran."
+                            AND max_value >= ".$data->kehadiran
+            ;
+
+            $ratarata = $db->exec("single");
+            
+            ?>
+            <td><?=$ratarata->name;?></td>
         </tr>
         <tr>
             
+        <?php
+        
+        $totalNilai = $dataPenilai[0]->NILAI + $dataTeman[0]->NILAI + $dataSiswa[0]->NILAI + $dataOrangtua[0]->NILAI + $data->kehadiran;
+        $totalNilai = $totalNilai / 5;
+        
+        ?>
             <td colspan="2" style="text-align: center;font-weight:800">Total Rata-Rata Nilai PKG</td>
-            <td style="text-align: center;">0</td>
-            <td></td>
+            <td style="text-align: center;"><?=number_format($totalNilai, 2);?></td>
+            <?php
+            
+            $conn = conn();
+            $db   = new Database($conn);
+
+            $db->query = "SELECT * FROM evaluation_ranges
+                            WHERE min_value <= ".$totalNilai."
+                            AND max_value >= ".$totalNilai
+            ;
+
+            $ratarataTotal = $db->exec("single");
+            
+            ?>
+            <td><?=$ratarataTotal->name;?></td>
         </tr>
     </table>
 
@@ -203,8 +299,8 @@
         <table style="width:100%">
             <tr>
                 <th width="50%" rowspan="3">Guru yang Dinilai<br><br><br><br><br><br>
-                    <u><?= $evaluator->teacher->name ?></u><br>
-                    NIK : <?= $evaluator->teacher->nik ?>
+                    <u><?= $data->name ?></u><br>
+                    NIK : <?= $data->nik ?>
                 </th>
                 <th width="50%" rowspan="3">Kepala SD Khazanah Ilmu<br><br><br><br><br><br>
                     <u>Mohamad Rojii, M.Pd.</u><br>

@@ -53,7 +53,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="" class>Subject</label>
+                                <label for="" class>Subject Penilaian</label>
                             </div>
                             <table class="table">
                                 <thead>
@@ -70,7 +70,7 @@
 
                                     <?php foreach ($datasubjects as $dsub) { ?>
                                     <?php foreach ($dataguru as $dg) {
-                                        $namaguru[] = $dg->name;
+                                        $namaguru[$dg->id] = $dg->name;
                                     } 
                                     ?>
                                     <tr>

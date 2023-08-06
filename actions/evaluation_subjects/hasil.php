@@ -24,7 +24,9 @@ $period = $db->single('periods',[
 
 $db->query = "SELECT 
             *,
-            ROUND(AVG(evaluations.score)) as NILAI
+            AVG(evaluations.score) as NILAI
+            -- COUNT(evaluations.score) as JUMLAH,
+            -- SUM(evaluations.score) as TOTAL_NILAI
           FROM 
             evaluation_subjects
           INNER JOIN
@@ -42,7 +44,7 @@ $dataSiswa = $db->exec('all');
 
 $db->query = "SELECT 
             *,
-            ROUND(AVG(evaluations.score)) as NILAI
+            AVG(evaluations.score) as NILAI
           FROM 
             evaluation_subjects
           INNER JOIN
@@ -60,7 +62,7 @@ $dataOrangtua = $db->exec('all');
 
 $db->query = "SELECT 
             *,
-            ROUND(AVG(evaluations.score)) as NILAI
+            AVG(evaluations.score) as NILAI
           FROM 
             evaluation_subjects
           INNER JOIN
@@ -94,8 +96,15 @@ $db->query = "SELECT
 
 $dataTeman = $db->exec('all');
 
-echo '<pre>';
-print_r($dataSiswa);
-die;
+$db->query = "SELECT evaluation_subjects.*, teachers.name, teachers.nik 
+              FROM evaluation_subjects
+              JOIN teachers
+              ON teachers.id = evaluation_subjects.teacher_id 
+              WHERE evaluation_subjects.id =  $_GET[id]";
+$data = $db->exec("single");
 
-return compact('evaluator', 'categories', 'categories_student', 'period', 'dataSiswa','dataPenilai','dataTeman', 'keterangan');
+// echo '<pre>';
+// print_r($data);
+// die;
+
+return compact('period', 'dataSiswa','dataPenilai','dataTeman', 'dataOrangtua', 'keterangan', 'data');

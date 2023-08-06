@@ -9,7 +9,7 @@
         <form action="" method="post">
             <input type="hidden" name="evaluator_id" value="<?=$evaluator_parents->id?>">
             <input type="hidden" name="target" value="Orang Tua">
-            <input type="hidden" name="teacher_id" value="<?=$evaluator_parents->parent->id?>">
+            <input type="hidden" name="teacher_id" value="<?=$evaluator_parents->teacher->id?>">
             <input type="hidden" name="period_id" value="<?=$period->id?>">
             <?php foreach($categories_parent as $index => $category): ?>
                 <h4><?=$index+1?>. <?=$category->name?></h4>

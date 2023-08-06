@@ -16,7 +16,8 @@ return [
     'evaluators'        => 'Penilai',
     'evaluator'         => 'Penilai',
     'evaluations'       => 'Proses Penilaian',
-    'evaluation_subjects' => 'Subjek Penilaian'
+    'evaluation_subjects' => 'Subjek Penilaian',
+    'evaluator_students'    => 'Penilai Siswa'
 
     
 ];

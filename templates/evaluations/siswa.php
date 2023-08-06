@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title">Penilaian Siswa (<?=$period->name?>) - <?=$evaluator_students->student->name?></h4>
+        <h4 class="card-title">Penilaian Guru (<?=$period->name?>) - <?=$evaluator_students->teacher->name?></h4>
     </div>
     <div class="card-body">
             <?php if($success_msg): ?>
@@ -9,7 +9,7 @@
         <form action="" method="post">
             <input type="hidden" name="evaluator_id" value="<?=$evaluator_students->id?>">
             <input type="hidden" name="target" value="Siswa">
-            <input type="hidden" name="teacher_id" value="<?=$evaluator_students->student->id?>">
+            <input type="hidden" name="teacher_id" value="<?=$evaluator_students->teacher->id?>">
             <input type="hidden" name="period_id" value="<?=$period->id?>">
             <?php foreach($categories_student as $index => $category): ?>
                 <h4><?=$index+1?>. <?=$category->name?></h4>
