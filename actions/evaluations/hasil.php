@@ -84,8 +84,4 @@ foreach($scores as $score)
 $db->query = "SELECT * FROM result_ranges";
 $keterangan = $db->exec('all');
 
-// echo "<pre>";
-// print_r($keterangan);
-// die();
-
 return compact('evaluator', 'categories', 'categories_student', 'period', 'averageScoreByCategory', 'dump_scores', 'keterangan');

@@ -68,9 +68,4 @@ if (request() == 'POST') {
     header('location:' . routeTo('evaluations/do?id=' . $_GET['id'] . ''));
 }
 
-
-// echo "<pre>";
-// print_r($evaluator);
-// die();
-
 return compact('evaluator_students', 'categories_student', 'period', 'success_msg');

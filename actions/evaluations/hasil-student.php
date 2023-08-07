@@ -2,6 +2,11 @@
 
 $success_msg = get_flash_msg('success');
 
+Validation::run([
+    'id' => [
+        'required', 'exists:evaluator_students'
+    ]
+], $_GET);
 $conn = conn();
 $db   = new Database($conn);
 
@@ -9,15 +14,6 @@ $period = $db->single('periods', [
     'status' => '1'
 ]);
 
-
-// ========================================= Siswa ===========================================
-
-    Validation::run([
-        'id' => [
-            'required', 'exists:evaluator_students'
-        ]
-    ], $_GET);
-    
     $evaluator_students = $db->single('evaluator_students', [
         'id'    => $_GET['id']
     ]);
@@ -71,11 +67,3 @@ foreach($score as $s)
 
 return compact('evaluator_students', 'categories_student', 'period', 'success_msg', 'dumpEvaluations');
 
-
-
-
-// echo "<pre>";
-// print_r($evaluator);
-// die();
-
-// return compact('evaluator', 'evaluator_students', 'evaluator_parents', 'categories', 'categories_student', 'categories_parent', 'period', 'success_msg');
