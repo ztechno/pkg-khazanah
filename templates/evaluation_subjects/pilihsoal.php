@@ -8,7 +8,7 @@
                     <h5 class="text-white op-7 mb-2">Memanajemen data <?=_ucwords(__($table))?></h5>
                 </div>
                 <div class="ml-md-auto py-2 py-md-0">
-                    <a href="<?=routeTo('evaluation_subjects/index',['table'=>$table])?>"
+                    <a href="<?=routeTo('evaluation_subjects/index',[])?>"
                         class="btn btn-warning btn-round">Kembali</a>
                 </div>
             </div>

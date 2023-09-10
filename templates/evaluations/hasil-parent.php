@@ -9,7 +9,7 @@
                 </div>
                 <div class="ml-md-auto py-2 py-md-0">
                     
-                        <a href="<?= routeTo('evaluations/student') ?>" class="btn btn-warning btn-round">Kembali</a>
+                        <a href="<?= routeTo('evaluations/parent') ?>" class="btn btn-warning btn-round">Kembali</a>
                    
                 </div>
             </div>

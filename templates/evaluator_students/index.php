@@ -8,7 +8,7 @@
                     <h5 class="text-white op-7 mb-2">Memanajemen data <?=_ucwords(__($table))?></h5>
                 </div>
                 <div class="ml-md-auto py-2 py-md-0">
-                    <?php if(is_allowed(get_route_path('evaluator_students/create',['table'=>$table]),auth()->user->id)): ?>
+                    <?php if(is_allowed(get_route_path('evaluator_students/create',[]),auth()->user->id)): ?>
                     <a href="<?=routeTo('evaluator_students/create')?>" class="btn btn-secondary btn-round">Buat
                         <?=_ucwords(__($table))?></a>
                     <?php endif ?>

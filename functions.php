@@ -623,7 +623,7 @@ function asset($file)
 function get_route_path($path, $params)
 {
     $pretty = config('pretty_url');
-    $fullpath = $path . ($pretty ? '?' : '&') . http_build_query($params);
+    $fullpath = $path . (!empty($params) ? ($pretty ? '?' : '&') : '') . (!empty($params) ? http_build_query($params) : '');
     return $fullpath;
 }
 

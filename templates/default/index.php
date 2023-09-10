@@ -17,7 +17,7 @@
     <div class="page-inner mt--5">
         <div class="row mt--2">
             
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card full-height">
                     <div class="card-body">
                         
@@ -26,7 +26,7 @@
                             <div class="col-md-4 d-flex flex-column justify-content-around">
                                 <div>
                                     <h6 class="fw-bold text-uppercase text-info op-8">Total</h6>
-                                    <h3 class="fw-bold"></h3>
+                                    <h3 class="fw-bold"><?=$total_guru;?></h3>
                                 </div>
 
                             </div>
@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card full-height">
                     <div class="card-body">
                         <div class="card-title">Data Siswa</div>
@@ -43,7 +43,7 @@
                             <div class="col-md-4 d-flex flex-column justify-content-around">
                                 <div>
                                     <h6 class="fw-bold text-uppercase text-warning op-8">Total</h6>
-                                    <h3 class="fw-bold"></h3>
+                                    <h3 class="fw-bold"><?=$total_siswa;?></h3>
                                 </div>
 
                             </div>
@@ -52,32 +52,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card full-height">
                     <div class="card-body">
                         <div class="card-title">Data Orang tua</div>
                         <div class="row py-3">
                             <div class="col-md-4 d-flex flex-column justify-content-around">
                                 <div>
-                                    <h6 class="fw-bold text-uppercase text-warning op-8">Total</h6>
-                                    <h3 class="fw-bold"></h3>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card full-height">
-                    <div class="card-body">
-                        <div class="card-title">Range Hasil</div>
-                        <div class="row py-3">
-                            <div class="col-md-4 d-flex flex-column justify-content-around">
-                                <div>
                                     <h6 class="fw-bold text-uppercase text-success op-8">Total</h6>
-                                    <h3 class="fw-bold"></h3>
+                                    <h3 class="fw-bold"><?=$total_ortu;?></h3>
                                 </div>
 
                             </div>
@@ -86,6 +69,7 @@
                     </div>
                 </div>
             </div>
+            
             <!-- <h1><?php echo '<pre>' . PHP_EOL; var_dump(auth()->role_id)?></h1> -->
            
         </div>

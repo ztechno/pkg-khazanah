@@ -29,7 +29,7 @@ if(request() == 'POST')
         $db->insert($table, [
                 'teacher_id'    => $teacher_id,
                 'period_id'      => $priod->id,
-                'keharidan'     => $_POST['kehadiran']
+                'kehadiran'     => $_POST['kehadiran']
         ]);
     }
     // $insert = $db->insert($table,$_POST[$table]);

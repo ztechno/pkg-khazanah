@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Masuk</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-    <link rel="icon" href="<?= routeTo('assets/img/main-logo.png')?>" type="image/x-icon" />
+    <link rel="icon" href="<?= routeTo('assets/img/logokhazanah1.jpeg')?>" type="image/x-icon" />
 
     <!-- Fonts and icons -->
     <script src="<?=routeTo('assets/js/plugin/webfont/webfont.min.js')?>"></script>
