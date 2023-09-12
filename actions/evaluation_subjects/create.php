@@ -38,7 +38,7 @@ if(request() == 'POST')
         require '../actions/'.$table.'/after-insert.php';
 
     set_flash_msg(['success'=>_ucwords(__($table)).' berhasil ditambahkan']);
-    header('location:'.routeTo('evaluation_subjects/index',['table'=>$table]));
+    header('location:'.routeTo('evaluation_subjects/index',[]));
 }
 
 

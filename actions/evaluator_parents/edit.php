@@ -28,7 +28,7 @@ if(request() == 'POST')
         require '../actions/'.$table.'/after-edit.php';
 
     set_flash_msg(['success'=>_ucwords(__($table)).' berhasil diupdate']);
-    header('location:'.routeTo('crud/index',['table'=>$table]));
+    header('location:'.routeTo('evaluator_parents/index',[]));
 }
 
 return [

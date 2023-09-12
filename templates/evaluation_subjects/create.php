@@ -51,7 +51,7 @@
                             </table>
                             <div class="form-group mb-3">
                                 <label for="">Rata-Rata Kehadiran</label>
-                                <input type="text" name="kehadiran" id="" class="form-control mb-3">
+                                <input type="text" name="kehadiran" id="" class="form-control mb-3" required>
                             </div>
 
 

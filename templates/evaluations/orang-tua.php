@@ -1,8 +1,9 @@
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title">Penilaian Orang Tua (<?=$period->name?>) - <?=$evaluator_parents->parent->name?></h4>
+        <h4 class="card-title">Penilaian Orang Tua (<?=$period->name?>) - <?=$evaluator_parents->teacher->name?></h4>
     </div>
     <div class="card-body">
+        
             <?php if($success_msg): ?>
                 <div class="alert alert-success"><?=$success_msg?></div>
             <?php endif ?>

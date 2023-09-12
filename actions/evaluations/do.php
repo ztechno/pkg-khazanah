@@ -161,11 +161,12 @@ if (auth()->role_id == 5) {
             'required', 'exists:evaluator_parents'
         ]
     ], $_GET);
+ 
     $evaluator_parents = $db->single('evaluator_parents', [
         'id'    => $_GET['id']
     ]);
 
-    $db->query = "SELECT * FROM parents WHERE id = (SELECT teacher_id FROM evaluation_subjects WHERE id=$evaluator_parents->subject_id)";
+    $db->query = "SELECT * FROM teachers WHERE id = (SELECT teacher_id FROM evaluation_subjects WHERE id=$evaluator_parents->subject_id)";
     $evaluator_parents->teacher = $db->exec('single');
 
     $categories_parent = $db->all('categories', [
